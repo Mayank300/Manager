@@ -8,12 +8,32 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo/vector-icons": "^12.0.5",
+    "@material-ui/core": "^4.11.4",
+    "@react-native-community/masked-view": "^0.1.11",
+    "@react-navigation/bottom-tabs": "^5.11.10",
+    "@react-navigation/native": "^5.9.4",
     "expo": "~41.0.1",
+    "expo-notifications": "^0.11.6",
+    "expo-permissions": "^12.0.1",
     "expo-status-bar": "~1.0.4",
+    "firebase": "^8.4.3",
+    "lottie-react-native": "^4.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
-    "react-native-web": "~0.13.12"
+    "react-native-elements": "^3.4.1",
+    "react-native-gesture-handler": "^1.10.3",
+    "react-native-material-textfield": "^0.16.1",
+    "react-native-onboarding-swiper": "^1.1.4",
+    "react-native-paper": "^4.8.1",
+    "react-native-reanimated": "^2.1.0",
+    "react-native-responsive-fontsize": "^0.5.0",
+    "react-native-safe-area-context": "^3.2.0",
+    "react-native-screens": "^3.1.1",
+    "react-native-web": "~0.13.12",
+    "react-navigation": "^4.4.4",
+    "react-navigation-drawer": "^2.7.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0"
