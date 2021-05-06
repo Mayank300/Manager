@@ -1,5 +1,6 @@
 import React from "react";
 import { View, TextComponent, StyleSheet, Dimensions } from "react-native";
+import { windowWidth } from "./Dimensions";
 import Tab from "./Tab";
 
 const { width } = Dimensions.get("screen");
@@ -48,9 +49,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     backgroundColor: "#fff",
-    width: 300,
+    width: windowWidth / 1.1,
     borderRadius: 100,
-    elevation: 2,
+    elevation: 10,
   },
 });
 

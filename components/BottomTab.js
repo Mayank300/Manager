@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "../screens/HomeScreen";
 import NotificationScreen from "../screens/NotificationScreen";
 import MyProducts from "../screens/MyProducts";
+import SettingScreen from "../screens/SettingScreen";
 import TabBar from "./TabBar";
 
 const Tab = createBottomTabNavigator();
@@ -34,6 +35,11 @@ function BottomTab() {
           name="Notice"
           component={NotificationScreen}
           initialParams={{ icon: "bell" }}
+        />
+        <Tab.Screen
+          name="Settings"
+          component={SettingScreen}
+          initialParams={{ icon: "settings" }}
         />
       </Tab.Navigator>
     </NavigationContainer>

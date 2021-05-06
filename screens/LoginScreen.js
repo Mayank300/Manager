@@ -8,11 +8,13 @@ import {
   StyleSheet,
   ScrollView,
   Alert,
+  StatusBar,
 } from "react-native";
 import firebase from "firebase";
 
 import FormInput from "../components/FormInput";
 import FormButton from "../components/FormButton";
+import { windowHeight } from "../components/Dimensions";
 
 export default class LoginScreen extends Component {
   constructor(props) {
@@ -22,18 +24,6 @@ export default class LoginScreen extends Component {
       password: "",
     };
   }
-
-  componentDidMount() {
-    this.checkIfLoggedIn();
-  }
-
-  checkIfLoggedIn = () => {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (user) {
-        this.props.navigation.navigate("BottomTab");
-      }
-    });
-  };
 
   login = (email, password) => {
     firebase
@@ -51,49 +41,52 @@ export default class LoginScreen extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Image source={require("../assets/logo.png")} style={styles.logo} />
-        <Text style={styles.text}>Manager</Text>
-        <FormInput
-          labelValue={this.state.email}
-          onChangeText={(text) => {
-            this.setState({
-              email: text,
-            });
-          }}
-          placeholderText="Email"
-          iconType="user"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCorrect={false}
-        />
+      <ScrollView>
+        <StatusBar hidden={true} />
+        <View style={styles.container}>
+          <Image source={require("../assets/logo.png")} style={styles.logo} />
+          <Text style={styles.text}>Manager</Text>
+          <FormInput
+            labelValue={this.state.email}
+            onChangeText={(text) => {
+              this.setState({
+                email: text,
+              });
+            }}
+            placeholderText="Email"
+            iconType="user"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
 
-        <FormInput
-          labelValue={this.state.password}
-          onChangeText={(text) => {
-            this.setState({
-              password: text,
-            });
-          }}
-          placeholderText="Password"
-          iconType="lock"
-          secureTextEntry={true}
-        />
+          <FormInput
+            labelValue={this.state.password}
+            onChangeText={(text) => {
+              this.setState({
+                password: text,
+              });
+            }}
+            placeholderText="Password"
+            iconType="lock"
+            secureTextEntry={true}
+          />
 
-        <FormButton
-          buttonTitle="Sign In"
-          onPress={() => this.login(this.state.email, this.state.password)}
-        />
+          <FormButton
+            buttonTitle="Sign In"
+            onPress={() => this.login(this.state.email, this.state.password)}
+          />
 
-        <TouchableOpacity
-          style={styles.forgotButton}
-          onPress={() => this.props.navigation.navigate("SignupScreen")}
-        >
-          <Text style={styles.navButtonText}>
-            Don't have an acount? Create here
-          </Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            style={styles.forgotButton}
+            onPress={() => this.props.navigation.navigate("SignupScreen")}
+          >
+            <Text style={styles.navButtonText}>
+              Don't have an acount? Create here
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </ScrollView>
     );
   }
 }

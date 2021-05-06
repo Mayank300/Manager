@@ -39,6 +39,18 @@ const Done = ({ ...props }) => (
 );
 
 const OnboardingScreen = ({ navigation }) => {
+  useEffect(() => {
+    checkIfLoggedIn();
+  });
+
+  function checkIfLoggedIn() {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        navigation.navigate("BottomTab");
+      }
+    });
+  }
+
   return (
     <Onboarding
       DoneButtonComponent={Done}

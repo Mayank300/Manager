@@ -12,6 +12,7 @@ import { windowHeight, windowWidth } from "../components/Dimensions";
 import MyHeader from "../components/Header";
 import { TextInput } from "react-native-paper";
 import db from "../config";
+import { Icon, Avatar } from "react-native-elements";
 
 export default class MyProducts extends Component {
   constructor() {
@@ -23,6 +24,7 @@ export default class MyProducts extends Component {
       eachCost: "",
       totalCost: "",
       user: [],
+      docId: "",
     };
   }
 
@@ -31,14 +33,16 @@ export default class MyProducts extends Component {
   }
 
   getTotalCost() {
+    var email = firebase.auth().currentUser.email;
     db.collection("users")
-      .where("email_id", "==", this.state.userId)
+      .where("email_id", "==", email)
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
+          var data = doc.data();
           this.setState({
-            id: doc.id,
-            totalCost: doc.data().total_money,
+            totalCost: data.total_money,
+            docId: doc.id,
           });
         });
       });
@@ -73,11 +77,17 @@ export default class MyProducts extends Component {
       request_id: randomRequestId,
       date: firebase.firestore.FieldValue.serverTimestamp(),
     });
+
+    db.collection("users").doc(this.state.docId).update({
+      total_money: this.state.totalCost,
+    });
+
     this.setState({
       productName: "",
       quantity: "",
-      totalCost: "",
+      totalCost: this.state.totalCost,
       eachCost: "",
+      image: "#",
     });
   }
 
@@ -116,6 +126,7 @@ export default class MyProducts extends Component {
               });
             }}
           />
+
           <TouchableOpacity
             style={styles.button}
             onPress={() => {
@@ -165,5 +176,15 @@ const styles = StyleSheet.create({
     marginLeft: windowWidth / 8,
     marginTop: windowWidth / 10,
     marginBottom: windowWidth / 3,
+  },
+  imgbutton: {
+    width: "55%",
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 10,
+    backgroundColor: "grey",
+    marginLeft: windowWidth / 4.5,
+    marginTop: windowWidth / 10,
   },
 });
