@@ -10,7 +10,7 @@ export class SettingScreen extends Component {
         <TouchableOpacity
           style={styles.button}
           onPress={() => {
-            // this.props.navigation.navigate("OnboardingScreen");
+            this.props.navigation.navigate("OnboardingScreen");
             firebase.auth().signOut();
           }}
         >

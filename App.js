@@ -13,11 +13,27 @@ export default function App() {
 }
 
 const switchNavigator = createSwitchNavigator({
-  OnboardingScreen: { screen: OnboardingScreen },
-  LoginScreen: { screen: LoginScreen },
-  SignupScreen: { screen: SignupScreen },
-  Drawer: { screen: AppDrawer },
-  BottomTab: { screen: BottomTab },
+  OnboardingScreen: OnboardingScreen,
+  LoginScreen: LoginScreen,
+  SignupScreen: SignupScreen,
+  Drawer: AppDrawer,
+  BottomTab: BottomTab,
 });
 
 const AppContainer = createAppContainer(switchNavigator);
+{
+  /* <NavigationContainer>
+      <Stack.Navigator
+        initialRouteName="OnboardingScreen"
+        screenOptions={{
+          headerShown: false,
+        }}
+      >
+        <Stack.Screen name="OnboardingScreen" component={OnboardingScreen} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="SignupScreen" component={SignupScreen} />
+        <Stack.Screen name="Drawer" component={AppDrawer} />
+        <Stack.Screen name="BottomTab" component={BottomTab} />
+      </Stack.Navigator>
+    </NavigationContainer> */
+}

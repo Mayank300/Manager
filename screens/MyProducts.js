@@ -30,6 +30,9 @@ export default class MyProducts extends Component {
 
   componentDidMount() {
     this.getTotalCost();
+    // setTimeout(() => {
+    //   this.setState({ totalCost: this.getTotalCost() });
+    // }, 1000);
   }
 
   getTotalCost() {
@@ -44,6 +47,7 @@ export default class MyProducts extends Component {
             totalCost: data.total_money,
             docId: doc.id,
           });
+          console.log(this.state.totalCost);
         });
       });
   }
@@ -53,8 +57,9 @@ export default class MyProducts extends Component {
   }
 
   alertForm() {
+    var cost = this.state.quantity * this.state.eachCost;
     this.setState({
-      totalCost: this.state.quantity * this.state.eachCost,
+      totalCost: this.state.totalCost + cost,
     });
 
     return Alert.alert("Product Added Successfully =)", "", [
@@ -85,9 +90,8 @@ export default class MyProducts extends Component {
     this.setState({
       productName: "",
       quantity: "",
-      totalCost: this.state.totalCost,
+      totalCost: "",
       eachCost: "",
-      image: "#",
     });
   }
 
