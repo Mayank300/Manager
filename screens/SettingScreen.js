@@ -2,20 +2,24 @@ import React, { Component } from "react";
 import { Text, View, StyleSheet, TouchableOpacity } from "react-native";
 import { windowHeight, windowWidth } from "../components/Dimensions";
 import firebase from "firebase";
+import MyHeader from "../components/Header";
 
 export class SettingScreen extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => {
-            this.props.navigation.navigate("OnboardingScreen");
-            firebase.auth().signOut();
-          }}
-        >
-          <Text style={styles.text}>Logout</Text>
-        </TouchableOpacity>
+      <View>
+        <MyHeader title="Settings" navigation={this.props.navigation} />
+        <View style={styles.container}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              this.props.navigation.navigate("OnboardingScreen");
+              firebase.auth().signOut();
+            }}
+          >
+            <Text style={styles.text}>Logout</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     );
   }

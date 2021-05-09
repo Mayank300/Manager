@@ -23,31 +23,32 @@ export default class MyProducts extends Component {
       quantity: "",
       eachCost: "",
       totalCost: "",
-      user: [],
+      totalMoneyFromProductList: [],
       docId: "",
     };
   }
 
   componentDidMount() {
-    this.getTotalCost();
-    // setTimeout(() => {
-    //   this.setState({ totalCost: this.getTotalCost() });
-    // }, 1000);
+    this.getTotalCostFromProductList();
   }
 
-  getTotalCost() {
+  getTotalCostFromProductList() {
     var email = firebase.auth().currentUser.email;
-    db.collection("users")
-      .where("email_id", "==", email)
+    db.collection("products")
+      .where("user_id", "==", email)
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
           var data = doc.data();
           this.setState({
-            totalCost: data.total_money,
+            totalMoneyFromProductList: data.total_cost,
             docId: doc.id,
           });
-          console.log(this.state.totalCost);
+
+          console.log(
+            "this is the total cost of all products inside products collection --> " +
+              this.state.totalMoneyFromProductList
+          );
         });
       });
   }
@@ -56,49 +57,10 @@ export default class MyProducts extends Component {
     return Math.random().toString(36).substring(7);
   }
 
-  alertForm() {
-    var cost = this.state.quantity * this.state.eachCost;
-    this.setState({
-      totalCost: this.state.totalCost + cost,
-    });
-
-    return Alert.alert("Product Added Successfully =)", "", [
-      {
-        text: "OK",
-        onPress: () => {
-          this.addProduct();
-        },
-      },
-    ]);
-  }
-
-  addProduct() {
-    var randomRequestId = this.createUniqueId();
-    db.collection("products").add({
-      user_id: this.state.userId,
-      product_name: this.state.productName,
-      quantity: this.state.quantity,
-      total_cost: this.state.totalCost,
-      request_id: randomRequestId,
-      date: firebase.firestore.FieldValue.serverTimestamp(),
-    });
-
-    db.collection("users").doc(this.state.docId).update({
-      total_money: this.state.totalCost,
-    });
-
-    this.setState({
-      productName: "",
-      quantity: "",
-      totalCost: "",
-      eachCost: "",
-    });
-  }
-
   render() {
     return (
       <View style={styles.container}>
-        <MyHeader title="My Products" />
+        <MyHeader title="My Products" navigation={this.props.navigation} />
         <ScrollView>
           <TextInput
             label="Product Name"
@@ -133,9 +95,9 @@ export default class MyProducts extends Component {
 
           <TouchableOpacity
             style={styles.button}
-            onPress={() => {
-              this.alertForm();
-            }}
+            // onPress={() => {
+            //   this.alertForm();
+            // }}
           >
             <Text style={styles.text}>ADD PRODUCT</Text>
           </TouchableOpacity>

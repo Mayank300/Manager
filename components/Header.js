@@ -30,15 +30,6 @@ export default class MyHeader extends Component {
   render() {
     return (
       <Header
-        leftComponent={
-          <Icon
-            name="menu"
-            type="fether"
-            color="#fff"
-            size={30}
-            onPress={() => this.props.navigation.toggleDrawer()}
-          />
-        }
         centerComponent={{
           text: this.props.title,
           style: { color: "#fff", fontSize: 30, fontWeight: "bold" },

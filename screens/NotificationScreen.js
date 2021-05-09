@@ -4,10 +4,9 @@ import firebase from "firebase";
 import { windowHeight, windowWidth } from "../components/Dimensions";
 import MyHeader from "../components/Header";
 import LottieView from "lottie-react-native";
-
-export default class NotificationsScreen extends Component {
-  constructor() {
-    super();
+class NotificationsScreen extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       list: [],
     };
@@ -21,7 +20,7 @@ export default class NotificationsScreen extends Component {
     if (this.state.list.length === 0) {
       return (
         <View style={[styles.container, { backgroundColor: "#fff" }]}>
-          <MyHeader title="Notifications" />
+          <MyHeader title="Notifications" navigation={this.props.navigation} />
           <ScrollView>
             <Text style={styles.text}>No Notifications Yet !</Text>
 
@@ -44,13 +43,15 @@ export default class NotificationsScreen extends Component {
     } else if (this.state.list.length > 0) {
       return (
         <View style={styles.container}>
-          <MyHeader title="Notifications" />
+          <MyHeader title="Notifications" navigation={this.props.navigation} />
           <Text style={styles.text}>Hello</Text>
         </View>
       );
     }
   }
 }
+
+export default NotificationsScreen;
 
 const styles = StyleSheet.create({
   container: {

@@ -30,7 +30,7 @@ export default class LoginScreen extends Component {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        this.props.navigation.navigate("BottomTab");
+        this.props.navigation.replace("BottomTab");
       })
       .catch((error) => {
         var errorCode = error.code;

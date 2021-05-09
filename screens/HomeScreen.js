@@ -72,7 +72,7 @@ export default class HomeScreen extends Component {
     if (this.state.list.length === 0) {
       return (
         <View style={[styles.container, { backgroundColor: "#fff" }]}>
-          <MyHeader title="Home" />
+          <MyHeader title="Home" navigation={this.props.navigation} />
           <Text style={styles.text}>Nothing in the List Yet !</Text>
           <View style={styles.lottie}>
             <LottieView
@@ -92,7 +92,7 @@ export default class HomeScreen extends Component {
     } else if (this.state.list.length > 0) {
       return (
         <View style={styles.container}>
-          <MyHeader title="Home" />
+          <MyHeader title="Home" navigation={this.props.navigation} />
           <FlatList
             keyExtractor={this.keyExtractor}
             data={this.state.list}

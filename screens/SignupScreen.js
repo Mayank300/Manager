@@ -40,7 +40,7 @@ const SignupScreen = ({ navigation }) => {
             {
               text: "OK",
               onPress: () => {
-                navigation.navigate("BottomTab");
+                navigation.replace("BottomTab");
               },
             },
           ]);
