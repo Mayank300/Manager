@@ -21,40 +21,58 @@ export default class MyProducts extends Component {
       userId: firebase.auth().currentUser.email,
       productName: "",
       quantity: "",
-      eachCost: "",
       totalCost: "",
-      totalMoneyFromProductList: [],
       docId: "",
+      manuDate: "",
+      expDate: "",
+      description: "",
     };
-  }
-
-  componentDidMount() {
-    this.getTotalCostFromProductList();
-  }
-
-  getTotalCostFromProductList() {
-    var email = firebase.auth().currentUser.email;
-    db.collection("products")
-      .where("user_id", "==", email)
-      .get()
-      .then((snapshot) => {
-        snapshot.forEach((doc) => {
-          var data = doc.data();
-          this.setState({
-            totalMoneyFromProductList: data.total_cost,
-            docId: doc.id,
-          });
-
-          console.log(
-            "this is the total cost of all products inside products collection --> " +
-              this.state.totalMoneyFromProductList
-          );
-        });
-      });
   }
 
   createUniqueId() {
     return Math.random().toString(36).substring(7);
+  }
+
+  addProduct() {
+    var randomNum = this.createUniqueId();
+    var today = new Date();
+    var date =
+      today.getDate() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getFullYear();
+
+    let hours = today.getHours();
+    let minutes = today.getMinutes();
+    let seconds = today.getSeconds();
+
+    // console.log(`${hours}:${minutes}:${seconds}`);
+
+    db.collection("products").add({
+      product_name: this.state.productName,
+      quantity: this.state.quantity,
+      total_cost: this.state.totalCost,
+      description: this.state.description,
+      manu_date: this.state.manuDate,
+      exp_date: this.state.expDate,
+      request_id: randomNum,
+      user_id: this.state.userId,
+      date: date,
+      time_added: `${hours} : ${minutes} : ${seconds}`,
+    });
+
+    this.setState({
+      productName: "",
+      quantity: "",
+      totalCost: "",
+      manuDate: "",
+      expDate: "",
+      description: "",
+      requestId: randomNum,
+    });
+
+    return Alert.alert("Product Added Successfully.");
   }
 
   render() {
@@ -73,6 +91,17 @@ export default class MyProducts extends Component {
             }}
           />
           <TextInput
+            label="Product Description"
+            style={styles.input}
+            value={this.state.description}
+            multiline={true}
+            onChangeText={(text) => {
+              this.setState({
+                description: text,
+              });
+            }}
+          />
+          <TextInput
             label="Quantity"
             style={styles.input}
             value={this.state.quantity}
@@ -83,21 +112,42 @@ export default class MyProducts extends Component {
             }}
           />
           <TextInput
-            label="Cost of Each Product"
+            label="Total Cost"
             style={styles.input}
-            value={this.state.eachCost}
+            value={this.state.totalCost}
             onChangeText={(text) => {
               this.setState({
-                eachCost: text,
+                totalCost: text,
+              });
+            }}
+          />
+          <TextInput
+            label="Manufacturer Date (dd-mm-yyyy)"
+            style={styles.input}
+            value={this.state.manuDate}
+            onChangeText={(text) => {
+              this.setState({
+                manuDate: text,
+              });
+            }}
+          />
+
+          <TextInput
+            label="Expiry Date (dd-mm-yyyy)"
+            style={styles.input}
+            value={this.state.expDate}
+            onChangeText={(text) => {
+              this.setState({
+                expDate: text,
               });
             }}
           />
 
           <TouchableOpacity
             style={styles.button}
-            // onPress={() => {
-            //   this.alertForm();
-            // }}
+            onPress={() => {
+              this.addProduct();
+            }}
           >
             <Text style={styles.text}>ADD PRODUCT</Text>
           </TouchableOpacity>

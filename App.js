@@ -8,6 +8,9 @@ import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import OnboardingScreen from "./screens/OnboardingScreen";
 import NotificationsScreen from "./screens/NotificationScreen";
+import Account from "./screens/Account";
+import ViewScreen from "./screens/ViewScreen";
+import CardDetails from "./screens/CardDetails";
 
 const Stack = createStackNavigator();
 
@@ -33,6 +36,21 @@ export default function App() {
         <Stack.Screen
           name="BottomTab"
           component={BottomTab}
+          options={{ header: () => null }}
+        />
+        <Stack.Screen
+          name="Account"
+          component={Account}
+          options={{ header: () => null }}
+        />
+        <Stack.Screen
+          name="ViewScreen"
+          component={ViewScreen}
+          options={{ header: () => null }}
+        />
+        <Stack.Screen
+          name="CardDetails"
+          component={CardDetails}
           options={{ header: () => null }}
         />
       </Stack.Navigator>

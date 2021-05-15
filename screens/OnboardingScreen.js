@@ -46,7 +46,7 @@ const OnboardingScreen = ({ navigation }) => {
   function checkIfLoggedIn() {
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        navigation.navigate("BottomTab");
+        navigation.replace("BottomTab");
       }
     });
   }

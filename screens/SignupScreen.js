@@ -56,7 +56,7 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <ScrollView>
-      <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
+      <TouchableOpacity onPress={() => navigation.replace("LoginScreen")}>
         <Icon
           style={styles.goback}
           name="long-arrow-left"
@@ -118,7 +118,7 @@ const SignupScreen = ({ navigation }) => {
 
         <TouchableOpacity
           style={styles.navButton}
-          onPress={() => navigation.navigate("LoginScreen")}
+          onPress={() => navigation.replace("LoginScreen")}
         >
           <Text style={styles.navButtonText}>Have an account? Sign In</Text>
         </TouchableOpacity>

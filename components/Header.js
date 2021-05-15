@@ -15,6 +15,7 @@ export default class MyHeader extends Component {
           size={30}
           onPress={() => this.props.navigation.navigate("Notice")}
         />
+
         <Badge
           value="0"
           containerStyle={{
