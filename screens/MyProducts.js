@@ -12,7 +12,6 @@ import { windowHeight, windowWidth } from "../components/Dimensions";
 import MyHeader from "../components/Header";
 import { TextInput } from "react-native-paper";
 import db from "../config";
-import { Icon, Avatar } from "react-native-elements";
 
 export default class MyProducts extends Component {
   constructor() {
@@ -47,8 +46,6 @@ export default class MyProducts extends Component {
     let minutes = today.getMinutes();
     let seconds = today.getSeconds();
 
-    // console.log(`${hours}:${minutes}:${seconds}`);
-
     db.collection("products").add({
       product_name: this.state.productName,
       quantity: this.state.quantity,
@@ -78,7 +75,7 @@ export default class MyProducts extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <MyHeader title="My Products" navigation={this.props.navigation} />
+        <MyHeader title="Add Products" navigation={this.props.navigation} />
         <ScrollView>
           <TextInput
             label="Product Name"

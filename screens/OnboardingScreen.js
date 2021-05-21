@@ -1,12 +1,5 @@
-import React, { Component, useEffect } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Button,
-  Image,
-} from "react-native";
+import React, { useEffect } from "react";
+import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 
 import firebase from "firebase";

@@ -1,10 +1,9 @@
-import React, { useState, useEffect, Component } from "react";
+import React, { Component } from "react";
 import {
   View,
   Text,
   TouchableOpacity,
   Image,
-  Platform,
   StyleSheet,
   ScrollView,
   Alert,
@@ -14,7 +13,6 @@ import firebase from "firebase";
 
 import FormInput from "../components/FormInput";
 import FormButton from "../components/FormButton";
-import { windowHeight } from "../components/Dimensions";
 
 export default class LoginScreen extends Component {
   constructor(props) {

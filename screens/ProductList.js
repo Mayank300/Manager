@@ -3,19 +3,14 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   FlatList,
   TouchableOpacity,
-  Alert,
-  ActivityIndicator,
 } from "react-native";
-import firebase from "firebase";
-import { windowHeight, windowWidth } from "../components/Dimensions";
+import { windowHeight } from "../components/Dimensions";
 import MyHeader from "../components/Header";
 import LottieView from "lottie-react-native";
-import { ListItem, Icon, SearchBar } from "react-native-elements";
+import { ListItem, Icon } from "react-native-elements";
 import db from "../config";
-import { ThemeProvider } from "@react-navigation/native";
 
 export default class ProductList extends Component {
   constructor(props) {
@@ -38,57 +33,6 @@ export default class ProductList extends Component {
       this.setState({
         list: list,
       });
-    });
-  };
-
-  renderHeader = () => {
-    return (
-      <SearchBar
-        placeholder="Search Product..."
-        lightTheme
-        round
-        onChangeText={this.updateSearch}
-        editable={true}
-        value={this.state.searchTxt}
-      />
-    );
-  };
-
-  updateSearch = (searchTxt) => {
-    this.setState({ searchTxt }, () => {
-      if ("" === searchTxt) {
-        this.setState({
-          list: [...this.state.list],
-        });
-        return;
-      }
-      this.state.list = this.state.list
-        .filter(function (item) {
-          return item.product_name.includes(searchTxt);
-        })
-        .map(function ({
-          id,
-          product_name,
-          total_cost,
-          quantity,
-          date,
-          exp_date,
-          manu_date,
-          description,
-          time_added,
-        }) {
-          return {
-            id,
-            product_name,
-            total_cost,
-            quantity,
-            date,
-            exp_date,
-            manu_date,
-            description,
-            time_added,
-          };
-        });
     });
   };
 
@@ -124,7 +68,6 @@ export default class ProductList extends Component {
         <View style={styles.container}>
           <MyHeader title="Product List" navigation={this.props.navigation} />
           <FlatList
-            ListHeaderComponent={this.renderHeader}
             keyExtractor={this.keyExtractor}
             data={this.state.list}
             renderItem={({ item, i }) => {

@@ -16,7 +16,7 @@ export default class ViewScreen extends Component {
     if (status === "granted") {
       await ScreenCapture.allowScreenCaptureAsync();
       ScreenCapture.addScreenshotListener(() => {
-        alert("Screen Shot Successfully Taken.");
+        alert("Screen Shot Successfully Taken !");
       });
     }
   }

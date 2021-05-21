@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TextComponent, StyleSheet, Dimensions } from "react-native";
+import { View, StyleSheet, Dimensions } from "react-native";
 import { windowWidth } from "./Dimensions";
 import Tab from "./Tab";
 

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { View, StyleSheet, Text } from "react-native";
-import Icon2 from "@expo/vector-icons/MaterialCommunityIcons";
 import { Icon } from "react-native-elements";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { RFValue } from "react-native-responsive-fontsize";

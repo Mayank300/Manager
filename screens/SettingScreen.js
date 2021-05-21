@@ -129,27 +129,7 @@ export class SettingScreen extends Component {
                 </View>
               </View>
             </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Notice")}
-            >
-              <View style={styles.rows}>
-                <Icon
-                  style={styles.row__icon}
-                  name="bell"
-                  type="feather"
-                  size={RFValue(25)}
-                />
-                <Text style={styles.rowtext}>Notifications</Text>
-                <View style={styles.rows__view}>
-                  <Icon
-                    style={styles.view__icon}
-                    name="chevron-right"
-                    type="feather"
-                    size={RFValue(28)}
-                  />
-                </View>
-              </View>
-            </TouchableOpacity>
+
             <TouchableOpacity
               onPress={() => {
                 this.logout();
@@ -178,18 +158,6 @@ export class SettingScreen extends Component {
       </View>
     );
   }
-}
-
-{
-  /* <TouchableOpacity
-            style={styles.button}
-            onPress={() => {
-              this.props.navigation.navigate("OnboardingScreen");
-              firebase.auth().signOut();
-            }}
-          >
-            <Text style={styles.text}>Logout</Text>
-          </TouchableOpacity> */
 }
 
 const styles = StyleSheet.create({

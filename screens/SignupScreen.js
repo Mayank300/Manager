@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -15,7 +15,7 @@ import FormButton from "../components/FormButton";
 import firebase from "firebase";
 import db from "../config";
 import { Icon } from "react-native-elements";
-import { windowHeight, windowWidth } from "../components/Dimensions";
+import { windowWidth } from "../components/Dimensions";
 
 const SignupScreen = ({ navigation }) => {
   const [name, setName] = useState();
@@ -46,7 +46,6 @@ const SignupScreen = ({ navigation }) => {
           ]);
         })
         .catch((error) => {
-          // Handle Errors here.
           var errorCode = error.code;
           var errorMessage = error.message;
           return Alert.alert(errorMessage);

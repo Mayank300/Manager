@@ -34,7 +34,6 @@ export default class Account extends Component {
             name: data.first_name,
             docId: doc.id,
           });
-          console.log(this.state.password);
         });
       });
   };
